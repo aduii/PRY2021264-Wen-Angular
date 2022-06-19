@@ -1,0 +1,137 @@
+<h1>Products</h1>
+<div>
+  <label for="inputExcel" class="mat-raised-button">Import excel</label>
+  <input id="inputExcel" type="file" hidden (change)="onFileChange($event)"/>
+  <h2> The number of columns is 4. The data type of for name, price and type is text, numeric and text respectively. Date input must be type date</h2>
+
+</div>
+<!-- <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name(Only Text)</th>
+        <th scope="col">Price(Only Numbers)</th>
+        <th scope="col">Color(Only Text)</th>
+        <th scope="col">Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <th scope="row">
+          <!-- Material unchecked -->
+          <!-- <div class="form-check">
+            <input type="checkbox" class="form-check-input" (click)="checkbox(product.id)" id="tableMaterialCheck2">
+            <label class="form-check-label" for="tableMaterialCheck2">{{product.id}}</label>
+          </div>
+        </th>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.color}}</td>
+        <td>{{product.date_input}}</td>
+        <td><a class="btn btn-primary btn.sm" routerLink='/newProduct/{{product.id}}' >Edit</a>
+          <a class="btn btn-primary btn.sm" (click)="delete(product.id)" >Delete</a></td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <div class="mat-elevation-z8">
+
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" [hiddenColumns]="[0,5]">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element" scope="row">
+          <!-- Material unchecked -->
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" (click)="checkbox(element.id)" id="tableMaterialCheck2">
+            <label class="form-check-label" for="tableMaterialCheck2">{{element.id}}</label>
+          </div>
+        </td>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.id}} </td> -->
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_input}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <a class="btn btn-primary btn.sm" routerLink='/newProduct/{{element.id}}' >Edit</a>
+          <a class="btn btn-primary btn.sm" (click)="delete(element.id)" >Delete</a> -->
+          <button mat-button color="primary" routerLink='/newProduct/{{element.id}}'>Edit</button>
+          <button mat-button color="accent" (click)="delete(element.id)">Delete</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="action-buttons">
+    <!-- <a class="btn btn-primary btn.sm aButton" (click)="editSelected()">Edit Selected</a>
+    <a class="btn btn-primary btn.sm aButton" (click)="editAll()">Edit All</a>
+    <a class="btn btn-primary btn.sm aButton" (click)="deleteAll()" >Delete All</a>
+    <a class="btn btn-primary btn.sm aButton" (click)="deleteSelected()" >Delete Selected</a> -->
+    <!-- <a class="btn btn-primary btn.sm" (click)="test()" >Test Date</a> -->
+    <button id="editSelected" mat-button color="primary" (click)="editSelected()">Edit Selected</button>
+    <button id="editAll" mat-button color="primary" (click)="editAll()">Edit All</button>
+    <button id="deleteSelected" mat-button color="accent"  (click)="deleteSelected()">Delete Selected</button>
+    <button id="deleteAll" mat-button color="accent"  (click)="deleteAll()">Delete All</button>
+    <!-- <button mat-button color="accent" >Excel</button> -->
+
+  </div>
+  <div class="export-buttons">
+    <h2>Export options</h2>
+    <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+      <mat-icon>get_app</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" mat-raised-button (click)="exporter.exportTable('csv')">
+      <mat-icon>get_app</mat-icon>
+    </button> -->
+    <section>
+      <div class="example-button-row">
+        <button id="exportExcel" mat-raised-button color="basic" (click)="exporter.exportTable('xlsx', {fileName:'product_table', sheet: 'sheet_name', Props: {Author: 'Talha'}})">Export in Excel</button>
+        <button id="exportCSV" mat-raised-button color="basic" (click)="exporter.exportTable('csv')">Export in CSV</button>
+        <button id="exportCSV" mat-raised-button color="basic" (click)="exporter.exportTable('json')">Export in JSON</button>
+      </div>
+    </section>
+
+  </div>
+
+
+
+
+

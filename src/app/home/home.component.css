@@ -1,0 +1,22 @@
+h1{
+  font-size: 32px;
+}
+h2{
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+table {
+  width: 100%;
+}
+.action-buttons{
+  margin-top: 3%;
+}
+.aButton{
+  padding-right: 5em;
+}
+.mat-form-field {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 14px;
+  width: 100%;
+}

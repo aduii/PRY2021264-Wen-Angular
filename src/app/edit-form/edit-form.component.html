@@ -1,0 +1,29 @@
+<h2>Selective Edit Product</h2>
+<div>
+  <div class="form-group">
+    <label for="inputEName">Name</label>
+    <input [(ngModel)]="product.name" type="text" class="form-control" required pattern=".*\S+.*" title="This field is required" id="inputEName" placeholder="Enter name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
+  </div>
+  <div class="form-group">
+    <label for="inputEPrice">Price</label>
+    <input [(ngModel)]="product.price" type="number" class="form-control" id="inputEPrice" placeholder="Ex. 420" >
+  </div>
+  <div class="form-group">
+    <label for="inputEColor">Type</label>
+    <!-- <input [(ngModel)]="product.color" type="text" class="form-control" id="inputEColor" placeholder="Ex. Red" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">-->
+    <div>
+      <select [(ngModel)]="product.type" class="form-select" aria-label="Default select example" id="inputEType">
+        <option value="Comestible" >Comestible</option>
+        <option value="No Comestible">No Comestible</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDate">Date</label>
+    <div>
+      <input [(ngModel)]="product.date_input" type="date" id="inputDate" value="2018-07-22">
+
+    <div>
+  <div class="btnSubmmit">
+  <button (click)="inputTest()" class="btn btn-primary">Submit</button>
+</div>
