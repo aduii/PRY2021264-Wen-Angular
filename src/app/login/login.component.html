@@ -1,26 +1,56 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<div *ngIf="success" class="alert alert-success">{{success}}</div>
-<h2>Login</h2>
+<div  *ngIf="success" class="alert alert-success">{{success}}</div>
+<div class="login-div">
+<img src='../../assets/carrito-de-supermercado2.jpg' class='imgRedonda' />
+</div>
+<h2>Iniciar Sesión</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="username">Email</label>
+        <label for="username">Correo electrónico</label>
         <input id="username" type="email" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
+            <div *ngIf="f.username.errors.required">Correo obligatorio</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">Contraseña</label>
         <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.required">Contraseña obligatoria</div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group--buttons">
         <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Login
+            Ingresar
         </button>
-        <a routerLink="/register" class="btn btn-link">Register</a>
+        <a routerLink="/register" class="btn btn-link">Registrarse</a>
     </div>
 </form>
+
+
+ <!--
+ <div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+      <mat-card-header>
+          <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+
+      <form class="example-form">
+          <mat-card-content>
+            <div>              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Usuario">
+          </mat-form-field></div>
+          <div>
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Contraseña">
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+      </form>
+  </mat-card>
+
+</div>
+  -->

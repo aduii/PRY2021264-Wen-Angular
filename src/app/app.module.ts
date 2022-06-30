@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { fakeBackendProvider } from './_helpers';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -25,6 +23,8 @@ import { MatDialogModule}  from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatInputModule,
     MatTableExporterModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatToolbarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,0 +1,6 @@
+.jumbotron{
+  background-image: radial-gradient(circle at 50% -20.71%, #ffffff 0, #ffffff 6.25%, #fffffb 12.5%, #fcfef5 18.75%, #f6faef 25%, #eef6e8 31.25%, #e4f2e1 37.5%, #d9eddb 43.75%, #cce8d5 50%, #bee3d0 56.25%, #b0decd 62.5%, #a3dacc 68.75%, #97d6cc 75%, #8bd3ce 81.25%, #81d0d1 87.5%, #79cdd4 93.75%, #73cad8 100%);
+}
+.row{
+  justify-content: center;
+}
